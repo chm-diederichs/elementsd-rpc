@@ -1,6 +1,6 @@
 {
-  "name": "bitcoind-rpc",
-  "description": "Bitcoin Client Library to connect to Bitcoin Core via RPC",
+  "name": "elementsd-rpc",
+  "description": "Elements Client Library to connect to Elementsd via RPC",
   "version": "0.8.1",
   "author": {
     "name": "Stephen Pair",
@@ -22,15 +22,20 @@
     {
       "name": "Braydon Fuller",
       "email": "braydon@bitpay.com"
+    },
+    {
+      "name": "Christophe Diederichs",
+      "email": "chm-diederichs@protonmail.com"
     }
   ],
   "keywords": [
+    "elements",
     "bitcoin",
     "rpc"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/bitpay/bitcoind-rpc"
+    "url": "https://github.com/chm-diederichs/elementsd-rpc"
   },
   "license": "MIT",
   "main": "lib/index.js",
@@ -47,7 +52,10 @@
     "sinon": "^1.12.2"
   },
   "bugs": {
-    "url": "https://github.com/bitpay/bitcoind-rpc/issues"
+    "url": "https://github.com/chm-diederichs/elementsd-rpc/issues"
   },
-  "homepage": "https://github.com/bitpay/bitcoind-rpc"
+  "homepage": "https://github.com/chm-diederichs/elementsd-rpc",
+  "dependencies": {
+    "axios": "^0.21.1"
+  }
 }
