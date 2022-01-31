@@ -1,5 +1,5 @@
-var axios = require('axios')
 var url = require('url')
+var undici = require('undici')
 
 function decodeURL(str) {
   var parsedUrl = url.parse(str)
@@ -65,17 +65,15 @@ async function rpc(request) {
     password: this.pass
   }
 
-  var called = false
-  var errorMessage = 'Elements JSON-RPC: '
+  const basicAuthHeader = 'Basic ' + Buffer.from(auth.username + ':' + auth.password).toString('base64');
+  const { body } = await undici.request(`http://${this.host}:${this.port}`, { method : 'POST', body: request, headers: { 'Authorization' : basicAuthHeader }  })
+  const response = await body.json()
 
-  try {
-    const ret = await axios.post(`http://${this.host}:${this.port}`, request, { auth })
-    return ret.data
-  } catch (e) {
-    if (e?.response?.data?.error?.message) {
-      throw new Error(e.response.data.error.message)
-    } else throw e
+  if(response.error){
+    throw new Error(response.error.message)
   }
+
+  return response
 }
 
 RpcClient.prototype.batch = async function (batchCallback) {
